@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import InputForm from './components/InputForm';
 import PredictionResult from './components/PredictionResult';
+import BackgroundAnimations from './components/BackgroundAnimations';
 import { predictCalories } from './utils/caloriePredictor';
 
 function App() {
@@ -20,9 +21,10 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 text-center mb-8">
+    <div className="min-h-screen fitness-gradient relative overflow-hidden py-12 px-4 sm:px-6 lg:px-8">
+      <BackgroundAnimations />
+      <div className="max-w-2xl mx-auto relative z-10">
+        <h1 className="text-4xl font-bold text-gray-900 text-center mb-8 animate-fade-in">
           Calorie Predictor
         </h1>
         <p className="text-center text-gray-600 mb-8">
