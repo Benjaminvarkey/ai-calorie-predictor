@@ -2,6 +2,7 @@ import { useState } from 'react';
 import InputForm from './components/InputForm';
 import PredictionResult from './components/PredictionResult';
 import BackgroundAnimations from './components/BackgroundAnimations';
+import History from './components/History';
 import { predictCalories } from './utils/caloriePredictor';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
     const calories = predictCalories(duration, intensity);
     setPredictedCalories(calories);
     setIsCalculating(false);
+    return calories;
   };
 
   return (
@@ -33,6 +35,7 @@ function App() {
         
         <InputForm onSubmit={handlePrediction} />
         <PredictionResult calories={predictedCalories} isCalculating={isCalculating} />
+        <History />
       </div>
     </div>
   );
