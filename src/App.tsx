@@ -5,10 +5,18 @@ import { predictCalories } from './utils/caloriePredictor';
 
 function App() {
   const [predictedCalories, setPredictedCalories] = useState<number | null>(null);
+  const [isCalculating, setIsCalculating] = useState(false);
 
-  const handlePrediction = (duration: number, intensity: number) => {
+  const handlePrediction = async (duration: number, intensity: number) => {
+    setIsCalculating(true);
+    setPredictedCalories(null);
+    
+    // Simulate a small delay for the animation
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
     const calories = predictCalories(duration, intensity);
     setPredictedCalories(calories);
+    setIsCalculating(false);
   };
 
   return (
@@ -22,7 +30,7 @@ function App() {
         </p>
         
         <InputForm onSubmit={handlePrediction} />
-        <PredictionResult calories={predictedCalories} />
+        <PredictionResult calories={predictedCalories} isCalculating={isCalculating} />
       </div>
     </div>
   );
