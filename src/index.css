@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+/* Smooth scrolling and better text rendering */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom background pattern */
+.bg-pattern {
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.05) 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
 @keyframes scale-in {
   0% { transform: scale(0); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }

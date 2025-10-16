@@ -35,7 +35,7 @@ const InputForm = ({ onSubmit }: InputFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 p-4 sm:p-6 md:p-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg max-w-md mx-auto border border-blue-100 hover:shadow-xl transition-all duration-300">
+    <form onSubmit={handleSubmit} className="space-y-6 p-4 sm:p-6 md:p-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg max-w-2xl mx-auto border border-blue-100 hover:shadow-xl transition-all duration-300 w-full">
       <div className="space-y-3">
         <label htmlFor="name" className="block text-lg font-semibold text-gray-700 flex items-center group">
           <svg className="w-5 h-5 mr-2 text-blue-500 group-hover:scale-110 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,52 +74,36 @@ const InputForm = ({ onSubmit }: InputFormProps) => {
       </div>
 
       <div className="space-y-3">
-        <label htmlFor="intensity" className="block text-lg font-semibold text-gray-700 flex items-center">
+        <label className="block text-lg font-semibold text-gray-700 flex items-center">
           <svg className="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
           Intensity Level
         </label>
-        <input
-          type="range"
-          id="intensity"
-          min="1"
-          max="5"
-          step="1"
-          value={intensity}
-          onChange={(e) => setIntensity(Number(e.target.value))}
-          className="w-full h-2 bg-blue-100 rounded-lg appearance-none cursor-pointer hover:bg-blue-200 transition-colors duration-200
-            [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 
-            [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-500 
-            [&::-webkit-slider-thumb]:hover:bg-blue-600 [&::-webkit-slider-thumb]:transition-all 
-            [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:hover:scale-125"
-        />
-        <div className="flex flex-wrap justify-between text-sm font-medium text-gray-600 gap-2">
-          <span className={`px-3 py-1.5 rounded-full transition-all duration-300 transform ${
-            intensity === 1 ? 'text-blue-500 bg-blue-50 scale-110' : 'hover:bg-gray-50'
-          }`}>
-            Light <span className="inline-block transition-transform duration-300 hover:scale-125">{intensityEmojis[0]}</span>
-          </span>
-          <span className={`px-3 py-1.5 rounded-full transition-all duration-300 transform ${
-            intensity === 2 ? 'text-blue-500 bg-blue-50 scale-110' : 'hover:bg-gray-50'
-          }`}>
-            Easy <span className="inline-block transition-transform duration-300 hover:scale-125">{intensityEmojis[1]}</span>
-          </span>
-          <span className={`px-3 py-1.5 rounded-full transition-all duration-300 transform ${
-            intensity === 3 ? 'text-blue-500 bg-blue-50 scale-110' : 'hover:bg-gray-50'
-          }`}>
-            Medium <span className="inline-block transition-transform duration-300 hover:scale-125">{intensityEmojis[2]}</span>
-          </span>
-          <span className={`px-3 py-1.5 rounded-full transition-all duration-300 transform ${
-            intensity === 4 ? 'text-blue-500 bg-blue-50 scale-110' : 'hover:bg-gray-50'
-          }`}>
-            Hard <span className="inline-block transition-transform duration-300 hover:scale-125">{intensityEmojis[3]}</span>
-          </span>
-          <span className={`px-3 py-1.5 rounded-full transition-all duration-300 transform ${
-            intensity === 5 ? 'text-blue-500 bg-blue-50 scale-110' : 'hover:bg-gray-50'
-          }`}>
-            Intense <span className="inline-block transition-transform duration-300 hover:scale-125">{intensityEmojis[4]}</span>
-          </span>
+        <div className="mt-2">
+          <div className="grid grid-cols-5 gap-3">
+            {['Light', 'Easy', 'Medium', 'Hard', 'Intense'].map((label, index) => (
+              <button
+                key={label}
+                type="button"
+                className={`group relative flex flex-col items-center justify-center p-3 rounded-xl 
+                  cursor-pointer min-w-[80px] border-2 transition-[transform,shadow,border-color] duration-200 
+                  ${intensity === index + 1 
+                    ? 'bg-gradient-to-b from-blue-50 to-blue-100/50 border-blue-400 text-blue-600 shadow-md scale-[1.02]' 
+                    : 'border-gray-100 hover:border-blue-200 text-gray-600 hover:text-gray-800 hover:shadow hover:-translate-y-0.5'
+                  }`}
+                onClick={() => setIntensity(index + 1)}
+              >
+                <span className={`text-2xl mb-2 transition-transform duration-200 ease-out
+                  ${intensity === index + 1 ? 'scale-110' : 'group-hover:scale-110'}`}>
+                  {intensityEmojis[index]}
+                </span>
+                <span className="text-sm font-medium leading-none whitespace-nowrap">
+                  {label}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
