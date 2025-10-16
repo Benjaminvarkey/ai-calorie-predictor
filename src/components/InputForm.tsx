@@ -11,8 +11,6 @@ const InputForm = ({ onSubmit }: InputFormProps) => {
   const [duration, setDuration] = useState<string>('');
   const [intensity, setIntensity] = useState<number>(1);
   const [name, setName] = useState<string>('');
-  // Removed unused calories state
-  const [foodDescription, setFoodDescription] = useState<string>('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,13 +23,11 @@ const InputForm = ({ onSubmit }: InputFormProps) => {
           calories: calculatedCalories,
           duration: Number(duration),
           intensity,
-          foodDescription,
           timestamp: Date.now()
         });
         setName('');
         setDuration('');
         setIntensity(1);
-        setFoodDescription('');
       } catch (error) {
         console.error('Error saving entry:', error);
       }
@@ -57,23 +53,7 @@ const InputForm = ({ onSubmit }: InputFormProps) => {
           placeholder="Enter your name"
         />
       </div>
-      <div className="space-y-3">
-        <label htmlFor="foodDescription" className="block text-lg font-semibold text-gray-700 flex items-center">
-          <svg className="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-          </svg>
-          Food Description
-        </label>
-        <input
-          type="text"
-          id="foodDescription"
-          value={foodDescription}
-          onChange={(e) => setFoodDescription(e.target.value)}
-          className="w-full px-4 py-3 border-2 border-blue-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
-          required
-          placeholder="Enter food items eaten"
-        />
-      </div>
+
       <div className="space-y-3">
         <label htmlFor="duration" className="block text-lg font-semibold text-gray-700 flex items-center">
           <svg className="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">

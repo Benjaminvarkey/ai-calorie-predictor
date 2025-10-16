@@ -5,7 +5,6 @@ import { db } from '../utils/firebase';
 interface CalorieEntry {
   name: string;
   calories: number;
-  foodDescription: string;
   duration: number;
   intensity: number;
   timestamp: number;
@@ -79,9 +78,6 @@ const History = () => {
                   {entry.calories} calories
                 </span>
               </div>
-              <p className="text-gray-700 mb-2">
-                <span className="font-medium">Food:</span> {entry.foodDescription}
-              </p>
               <div className="flex justify-between text-sm text-gray-500">
                 <p>
                   <span className="font-medium">Duration:</span> {entry.duration} minutes
